@@ -145,7 +145,20 @@ img {
 }
 
 
+.mobile-btns{
+display:flex;
+gap:1rem;
+width:100%;
+justify-content:center;
+flex-wrap:wrap;
+}
 
+.mobile-btns .btn{
+flex:1;
+text-align:center;
+padding:.8rem 1rem;
+font-size:1rem;
+}
 
 /* Section styling */
 .hero-section {
