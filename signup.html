@@ -17,6 +17,46 @@ justify-content:center;
 align-items:center;
 min-height:100vh;
 font-family:"Roboto Condensed", sans-serif;
+   cursor: none;
+}
+
+/* Inner dot */
+#cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background-color: #F2BD12; /* gold/yellow */
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    transition: background-color 0.2s ease, transform 0.08s ease;
+}
+
+/* Outer ring */
+#cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 35px;
+    height: 35px;
+    border: 2px solid #F2BD12;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9998;
+    transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, transform 0.08s ease;
+    opacity: 0.7;
+}
+
+/* Hover effect on interactive elements */
+.hover-cursor #cursor-ring {
+    width: 50px;
+    height: 50px;
+    border-color: #F2BD12;
+    opacity: 0.9;
 }
 
 .signup-box{
@@ -199,6 +239,43 @@ window.location.href="login.html";
 
 });
 
+
+const cursorDot = document.getElementById('cursor-dot');
+const cursorRing = document.getElementById('cursor-ring');
+const hoverElements = document.querySelectorAll('a, .btn, button');
+
+// Smooth movement for ring
+let mouseX = 0, mouseY = 0;
+let ringX = 0, ringY = 0;
+const speed = 0.2; // ring follow speed
+
+document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    // Move dot instantly
+    cursorDot.style.left = mouseX + 'px';
+    cursorDot.style.top = mouseY + 'px';
+});
+
+function animateRing() {
+    ringX += (mouseX - ringX) * speed;
+    ringY += (mouseY - ringY) * speed;
+    cursorRing.style.left = ringX + 'px';
+    cursorRing.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+}
+animateRing();
+
+// Hover effect
+hoverElements.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        document.body.classList.add('hover-cursor');
+    });
+    el.addEventListener('mouseleave', () => {
+        document.body.classList.remove('hover-cursor');
+    });
+});
 </script>
 
 </body>

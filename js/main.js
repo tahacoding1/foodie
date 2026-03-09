@@ -33,15 +33,6 @@ function animateRing() {
 }
 animateRing();
 
-// Click animation
-document.addEventListener('mousedown', () => {
-    cursorRing.classList.add('click-effect');
-});
-
-document.addEventListener('mouseup', () => {
-    cursorRing.classList.remove('click-effect');
-});
-
 // Hover effect
 hoverElements.forEach(el => {
     el.addEventListener('mouseenter', () => {
@@ -51,7 +42,6 @@ hoverElements.forEach(el => {
         document.body.classList.remove('hover-cursor');
     });
 });
-
 
 const cartIcon = document.querySelector('.cart-icon');
 const cartTab = document.querySelector('.cart-tab');
