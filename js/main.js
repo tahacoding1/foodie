@@ -6,6 +6,51 @@ var swiper = new Swiper(".mySwiper", {
     },
 });
 
+const cursorDot = document.getElementById('cursor-dot');
+const cursorRing = document.getElementById('cursor-ring');
+const hoverElements = document.querySelectorAll('a, .btn, button');
+
+// Smooth movement for ring
+let mouseX = 0, mouseY = 0;
+let ringX = 0, ringY = 0;
+const speed = 0.2; // ring follow speed
+
+document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    // Move dot instantly
+    cursorDot.style.left = mouseX + 'px';
+    cursorDot.style.top = mouseY + 'px';
+});
+
+function animateRing() {
+    ringX += (mouseX - ringX) * speed;
+    ringY += (mouseY - ringY) * speed;
+    cursorRing.style.left = ringX + 'px';
+    cursorRing.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+}
+animateRing();
+
+// Click animation
+document.addEventListener('mousedown', () => {
+    cursorRing.classList.add('click-effect');
+});
+
+document.addEventListener('mouseup', () => {
+    cursorRing.classList.remove('click-effect');
+});
+
+// Hover effect
+hoverElements.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        document.body.classList.add('hover-cursor');
+    });
+    el.addEventListener('mouseleave', () => {
+        document.body.classList.remove('hover-cursor');
+    });
+});
 
 
 const cartIcon = document.querySelector('.cart-icon');
