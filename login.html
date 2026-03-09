@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In - Foodie</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+
+body{
+background:#FFFDF7;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+font-family: "Roboto Condensed", sans-serif;
+}
+
+.login-box{
+
+width:400px;
+background:#fff;
+padding:40px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+
+}
+
+.login-box h2{
+
+text-align:center;
+margin-bottom:30px;
+color:#212121;
+
+}
+
+.input-box{
+
+margin-bottom:20px;
+
+}
+
+.input-box label{
+
+display:block;
+margin-bottom:5px;
+font-weight:500;
+
+}
+
+.input-box input{
+
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+
+}
+
+.input-box input:focus{
+
+border-color:#F2BD12;
+outline:none;
+
+}
+
+.btn{
+
+width:100%;
+padding:12px;
+border:none;
+background:#F2BD12;
+color:#fff;
+font-size:18px;
+border-radius:10px;
+cursor:pointer;
+transition:.3s;
+
+}
+
+.btn:hover{
+
+background:#212121;
+
+}
+
+.signup-link{
+
+text-align:center;
+margin-top:15px;
+
+}
+
+.signup-link a{
+
+color:#F2BD12;
+font-weight:bold;
+
+}
+
+.error{
+
+color:red;
+font-size:14px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+<h2>Login</h2>
+
+<form id="loginForm">
+
+<div class="input-box">
+
+<label>Email</label>
+<input type="email" id="email" required>
+<div class="error" id="emailError"></div>
+
+</div>
+
+<div class="input-box">
+
+<label>Password</label>
+<input type="password" id="password" required>
+<div class="error" id="passError"></div>
+
+</div>
+
+<button class="btn">Login</button>
+
+</form>
+
+<div class="signup-link">
+
+Don't have account?  
+<a href="signup.html">Sign Up</a>
+
+</div>
+
+</div>
+
+<script>
+
+document.getElementById("loginForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let email=document.getElementById("email").value;
+let password=document.getElementById("password").value;
+
+let emailError=document.getElementById("emailError");
+let passError=document.getElementById("passError");
+
+emailError.innerHTML="";
+passError.innerHTML="";
+
+let valid=true;
+
+if(!email.includes("@")){
+
+emailError.innerHTML="Enter valid email";
+valid=false;
+
+}
+
+if(password.length<6){
+
+passError.innerHTML="Password must be at least 6 characters";
+valid=false;
+
+}
+
+if(valid){
+
+alert("Login Successful");
+window.location.href="index.html";
+
+}
+
+});
+
+
+
+</script>
+
+</body>
+</html>

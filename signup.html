@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up - Foodie</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+
+body{
+background:#FFFDF7;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+font-family:"Roboto Condensed", sans-serif;
+}
+
+.signup-box{
+width:420px;
+background:#fff;
+padding:40px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.signup-box h2{
+text-align:center;
+margin-bottom:30px;
+color:#212121;
+}
+
+.input-box{
+margin-bottom:18px;
+}
+
+.input-box label{
+display:block;
+margin-bottom:5px;
+font-weight:500;
+}
+
+.input-box input{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+}
+
+.input-box input:focus{
+border-color:#F2BD12;
+outline:none;
+}
+
+.btn{
+width:100%;
+padding:12px;
+border:none;
+background:#F2BD12;
+color:#fff;
+font-size:18px;
+border-radius:10px;
+cursor:pointer;
+transition:.3s;
+}
+
+.btn:hover{
+background:#212121;
+}
+
+.login-link{
+text-align:center;
+margin-top:15px;
+}
+
+.login-link a{
+color:#F2BD12;
+font-weight:bold;
+}
+
+.error{
+color:red;
+font-size:14px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="signup-box">
+
+<h2>Create Account</h2>
+
+<form id="signupForm">
+
+<div class="input-box">
+<label>Full Name</label>
+<input type="text" id="name">
+<div class="error" id="nameError"></div>
+</div>
+
+<div class="input-box">
+<label>Email</label>
+<input type="email" id="email">
+<div class="error" id="emailError"></div>
+</div>
+
+<div class="input-box">
+<label>Phone Number</label>
+<input type="text" id="phone">
+<div class="error" id="phoneError"></div>
+</div>
+
+<div class="input-box">
+<label>Password</label>
+<input type="password" id="password">
+<div class="error" id="passError"></div>
+</div>
+
+<div class="input-box">
+<label>Confirm Password</label>
+<input type="password" id="confirmPassword">
+<div class="error" id="confirmError"></div>
+</div>
+
+<button class="btn">Sign Up</button>
+
+</form>
+
+<div class="login-link">
+Already have account?  
+<a href="login.html">Login</a>
+</div>
+
+</div>
+
+<script>
+
+document.getElementById("signupForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let name=document.getElementById("name").value.trim();
+let email=document.getElementById("email").value.trim();
+let phone=document.getElementById("phone").value.trim();
+let password=document.getElementById("password").value;
+let confirmPassword=document.getElementById("confirmPassword").value;
+
+let nameError=document.getElementById("nameError");
+let emailError=document.getElementById("emailError");
+let phoneError=document.getElementById("phoneError");
+let passError=document.getElementById("passError");
+let confirmError=document.getElementById("confirmError");
+
+nameError.innerHTML="";
+emailError.innerHTML="";
+phoneError.innerHTML="";
+passError.innerHTML="";
+confirmError.innerHTML="";
+
+let valid=true;
+
+if(!/^[A-Za-z ]+$/.test(name)){
+nameError.innerHTML="Name must contain only alphabets";
+valid=false;
+}
+
+if(!email.includes("@")){
+emailError.innerHTML="Enter valid email";
+valid=false;
+}
+
+if(!/^[0-9]{11}$/.test(phone)){
+phoneError.innerHTML="Phone must be 11 digits";
+valid=false;
+}
+
+if(password.length<6){
+passError.innerHTML="Password must be at least 6 characters";
+valid=false;
+}
+
+if(password!==confirmPassword){
+confirmError.innerHTML="Passwords do not match";
+valid=false;
+}
+
+if(valid){
+alert("Account Created Successfully");
+document.getElementById("signupForm").reset();
+window.location.href="login.html";
+}
+
+});
+
+</script>
+
+</body>
+</html>
